@@ -1,5 +1,3 @@
-console.log('___ENTER friends.js___');
-
 // Data structure that will store the friends data
 var friendsArray = [
 	{
