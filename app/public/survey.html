@@ -52,20 +52,20 @@
 						<div class="input-field col s6">
 							<h5>Name (Required)</h5>
 							<i class="material-icons prefix">account_circle</i>
-							<input id="icon_prefix" type="text" class="validate" placeholder="Your Name Here">
+							<input type="text" class="validate" placeholder="Your Name Here" id="userName">
 						</div>
 
 						<div class="input-field col s6">
 							<h5>Link to Photo Image (Required)</h5>
 							<i class="material-icons prefix">picture_in_picture</i>
-							<input id="icon_prefix" type="text" class="validate" placeholder="Photo Link Here">
+							<input type="text" class="validate" placeholder="Photo Link Here" id="userPhoto">
 						</div>
 
 						<!-- Survey Questions -->
 						<div class="input-field col s12">
 							<h3>Question 1</h3>
 							<h5>Your mind is always buzzing with unexplored ideas and plans.</h5>
-							<select>
+							<select id="question1">
 								<option value="" disabled selected>Choose your option</option>
 								<option value="1">1 (Strongly Disagree)</option>
 								<option value="2">2</option>
@@ -78,7 +78,7 @@
 						<div class="input-field col s12">
 							<h3>Question 2</h3>
 							<h5>Generally speaking, you rely more on your experience than your imagination.</h5>
-							<select>
+							<select id="question2">
 								<option value="" disabled selected>Choose your option</option>
 								<option value="1">1 (Strongly Disagree)</option>
 								<option value="2">2</option>
@@ -91,7 +91,7 @@
 						<div class="input-field col s12">
 							<h3>Question 3</h3>
 							<h5>You find it easy to stay relaxed and focused even when there is some pressure.</h5>
-							<select>
+							<select id="question3">
 								<option value="" disabled selected>Choose your option</option>
 								<option value="1">1 (Strongly Disagree)</option>
 								<option value="2">2</option>
@@ -104,7 +104,7 @@
 						<div class="input-field col s12">
 							<h3>Question 4</h3>
 							<h5>You rarely do something just out of sheer curiosity.</h5>
-							<select>
+							<select id="question4">
 								<option value="" disabled selected>Choose your option</option>
 								<option value="1">1 (Strongly Disagree)</option>
 								<option value="2">2</option>
@@ -117,7 +117,7 @@
 						<div class="input-field col s12">
 							<h3>Question 5</h3>
 							<h5>People can rarely upset you.</h5>
-							<select>
+							<select id="question5">
 								<option value="" disabled selected>Choose your option</option>
 								<option value="1">1 (Strongly Disagree)</option>
 								<option value="2">2</option>
@@ -130,7 +130,7 @@
 						<div class="input-field col s12">
 							<h3>Question 6</h3>
 							<h5>It is often difficult for you to relate to other people’s feelings.</h5>
-							<select>
+							<select id="question6">
 								<option value="" disabled selected>Choose your option</option>
 								<option value="1">1 (Strongly Disagree)</option>
 								<option value="2">2</option>
@@ -143,7 +143,7 @@
 						<div class="input-field col s12">
 							<h3>Question 7</h3>
 							<h5>In a discussion, truth should be more important than people’s sensitivities.</h5>
-							<select>
+							<select id="question7">
 								<option value="" disabled selected>Choose your option</option>
 								<option value="1">1 (Strongly Disagree)</option>
 								<option value="2">2</option>
@@ -156,7 +156,7 @@
 						<div class="input-field col s12">
 							<h3>Question 8</h3>
 							<h5>You rarely get carried away by fantasies and ideas.</h5>
-							<select>
+							<select id="question8">
 								<option value="" disabled selected>Choose your option</option>
 								<option value="1">1 (Strongly Disagree)</option>
 								<option value="2">2</option>
@@ -169,7 +169,7 @@
 						<div class="input-field col s12">
 							<h3>Question 9</h3>
 							<h5>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h5>
-							<select>
+							<select id="question9">
 								<option value="" disabled selected>Choose your option</option>
 								<option value="1">1 (Strongly Disagree)</option>
 								<option value="2">2</option>
@@ -182,7 +182,7 @@
 						<div class="input-field col s12">
 							<h3>Question 10</h3>
 							<h5>You feel more energetic after spending time with a group of people.</h5>
-							<select>
+							<select id="question10">
 								<option value="" disabled selected>Choose your option</option>
 								<option value="1">1 (Strongly Disagree)</option>
 								<option value="2">2</option>
@@ -194,7 +194,7 @@
 
 						<!-- Survey Submit Button -->
 						<div>
-							<button class="btn waves-effect waves-light" type="submit" name="action">Submit Responses
+							<button class="btn waves-effect waves-light" type="submit" name="action" id="submitButton">Submit Responses
 								<i class="material-icons right">send</i>
 							</button>
 						</div>
@@ -231,6 +231,33 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('select').material_select();
+		});
+
+		// Activate submit button
+		$("#submitButton").on("click", function(event) {
+			event.preventDefault();
+
+			// Gather user inputs
+			var userInput = {
+				name: $("#userName").val().trim(),
+				photo: $("#userPhoto").val().trim(),
+				scores:[
+					$("#question1").val().trim(),
+					$("#question2").val().trim(),
+					$("#question3").val().trim(),
+					$("#question4").val().trim(),
+					$("#question5").val().trim(),
+					$("#question6").val().trim(),
+					$("#question7").val().trim(),
+					$("#question8").val().trim(),
+					$("#question9").val().trim(),
+					$("#question10").val().trim()
+				]
+			};
+
+			console.log('userInput = ' + JSON.stringify(userInput));
+
+			
 		});
 	</script>
 </body>
