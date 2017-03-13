@@ -232,30 +232,27 @@
 	<div id="modal1" class="modal">
 		<div class="modal-content">
 			<h4>Closest Friend Match</h4>
+			<div class="divider"></div>
+			<h5 id="userMatch"></h5>
+			<img id="userMatchImage" class="materialboxed" width="650" src="">
 		</div>
 		<div class="modal-footer">
-			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+			<a href="/survey" class="modal-action modal-close waves-effect waves-green btn-flat">Fill Again!</a>
 		</div>
 	</div>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('select').material_select();
+
 			$('.modal').modal({
 				dismissible: false, // Modal can be dismissed by clicking outside of the modal
 				opacity: .5, // Opacity of modal background
 				inDuration: 300, // Transition in duration
 				outDuration: 200, // Transition out duration
 				startingTop: '4%', // Starting top style attribute
-				endingTop: '10%', // Ending top style attribute
-				ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-					alert("Ready");
-					console.log(modal, trigger);
-				},
-				complete: function() { 
-					alert('Closed'); 
-				} // Callback for Modal close
-				});
+				endingTop: '10%' // Ending top style attribute
+			});
 		});
 
 		// Activate submit button
@@ -280,13 +277,18 @@
 				]
 			};
 
-			console.log('userInput = ' + JSON.stringify(userInput));
+			// console.log('userInput = ' + JSON.stringify(userInput));
 
 			// Add user inputs to friends list
 			$.post('/api/friends', userInput)
       		.done(function(data) {
-      			console.log('response = ' + JSON.stringify(data));
+      			// console.log('response = ' + JSON.stringify(data));
 
+      			// Set the name and image values of friend match
+      			$('#userMatch').html(data.matchName);
+		    	$("#userMatchImage").attr("src", data.matchImage);
+
+		    	// Pop open the modal dialog
       			$('#modal1').modal('open');
       		});
 		});
