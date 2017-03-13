@@ -3,7 +3,7 @@ var path = require('path');
 
 // Export HTML routes
 module.exports = function(app) {
-	console.log('___ENTER htmlRoutes.js___');
+	// console.log('___ENTER htmlRoutes.js___');
 
 	// Home page
 	app.get('/', function(req, res) {
